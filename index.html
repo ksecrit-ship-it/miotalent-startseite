@@ -101,8 +101,8 @@ section{padding:var(--sect) 0}
 
 /* Dauer */
 .dauer{text-align:center}
-.dauer .big{font-family:var(--font-display);font-weight:700;letter-spacing:-.04em;line-height:.95;font-size:clamp(4rem,9vw + 1rem,9rem);color:var(--accent-strong)}
-.dauer .big small{display:block;font-size:.32em;letter-spacing:-.02em;color:var(--ink);margin-top:14px}
+.dauer .big{font-family:var(--font-display);font-weight:700;letter-spacing:-.04em;line-height:.95;font-size:clamp(3rem,9vw + 1rem,9rem);color:var(--accent-strong);white-space:nowrap}
+.dauer .big small{display:block;white-space:normal;font-size:.32em;letter-spacing:-.02em;color:var(--ink);margin-top:14px}
 .dauer .big small.pre{margin:0 0 10px}
 .dauer p{margin:24px auto 0;max-width:40ch;color:var(--muted)}
 
@@ -125,6 +125,33 @@ section{padding:var(--sect) 0}
 .final .btn{margin-top:40px;min-height:60px;padding:0 34px;font-size:1.125rem}
 .final .alt{margin-top:22px;font-size:1rem;color:var(--muted)}
 .final .alt a{color:var(--accent-strong);font-weight:600;text-underline-offset:4px}
+
+/* Media */
+.ki{position:absolute;top:12px;right:12px;background:color-mix(in oklab,var(--ink) 70%,transparent);color:#fff;font-size:1rem;font-weight:700;line-height:1;padding:5px 8px;border-radius:6px}
+.film{padding:0 0 var(--sect)}
+.film .frame{position:relative;max-width:1040px;margin:0 auto;border-radius:24px;overflow:hidden;background:var(--ink);box-shadow:0 30px 80px -30px color-mix(in oklab,var(--ink) 45%,transparent)}
+.film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--ink)}
+.film .cap{max-width:1040px;margin:16px auto 0;text-align:center;color:var(--muted);font-size:1rem}
+.cards{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:1120px}
+@media (max-width:619px){.cards .lbl{padding:14px;gap:8px;font-size:1rem}.cards .ki{top:8px;right:8px}}
+.cards li{position:relative;border-radius:var(--radius-card);overflow:hidden;background:var(--paper);border:1px solid var(--rule)}
+.cards img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .8s var(--ease-out)}
+.cards li:hover img{transform:scale(1.04)}
+.cards .lbl{display:flex;align-items:center;gap:12px;padding:18px 20px;font-weight:700;font-size:1.0625rem}
+.cards .lbl svg,.chips svg{width:24px;height:24px;stroke:var(--accent-strong);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media (min-width:620px){.cards{gap:20px}}
+@media (min-width:1000px){.cards{grid-template-columns:repeat(4,1fr)}}
+.chips{list-style:none;margin:28px auto 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.chips li{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:var(--radius-pill);background:var(--paper);border:1px solid var(--rule);font-weight:700;font-size:1.0625rem}
+.chips li.more{background:transparent;border-style:dashed;color:var(--accent-strong)}
+.partner figure{margin:0}
+.partner figure img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:20px}
+.partner figcaption{margin-top:12px;font-size:1rem;color:var(--on-dark)}
+.partner .steps-p{margin-top:32px}
+.who{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;color:var(--muted);font-size:1rem}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--paper);box-shadow:0 0 0 1px var(--rule)}
+.who img+img{margin-left:-24px}
+.who p{margin:0;max-width:none;text-align:left;font-size:1rem}
 
 /* Footer */
 footer{background:var(--ink);color:var(--on-dark);padding:56px 0;font-size:1rem}
@@ -176,6 +203,17 @@ footer a{color:var(--on-dark);text-decoration:none}footer a:hover{color:#fff;tex
   </div>
 </section>
 
+<section class="film" aria-label="Erklärvideo">
+  <div class="wrap reveal">
+    <div class="frame">
+      <video controls preload="none" playsinline poster="media/erklaervideo-vorschau.webp" aria-label="Erklärvideo: So funktioniert MioTalent">
+        <source src="media/erklaervideo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="cap">So funktioniert MioTalent, in 38 Sekunden. Mit KI erstellt, Stimme mit KI erzeugt.</p>
+  </div>
+</section>
+
 <section id="ablauf" aria-labelledby="h-ablauf">
   <div class="wrap">
     <div class="head reveal">
@@ -196,14 +234,16 @@ footer a{color:var(--on-dark);text-decoration:none}footer a:hover{color:#fff;tex
       <p class="eyebrow">Branchen</p>
       <h2 id="h-branchen">Wo Leute fehlen, helfen wir.</h2>
     </div>
-    <ul class="icons">
-      <li class="reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 9v6M9 12h6"/></svg>Pflege</li>
-      <li class="reveal" style="--d:.05s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Handwerk &amp; SHK</li>
-      <li class="reveal" style="--d:.1s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Elektro</li>
-      <li class="reveal" style="--d:.15s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12 12 3l10 9"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Bau &amp; Dach</li>
-      <li class="reveal" style="--d:.2s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Hotel &amp; Gastro</li>
-      <li class="reveal" style="--d:.25s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Lager &amp; Logistik</li>
-      <li class="reveal more" style="--d:.3s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>und mehr</li>
+    <ul class="cards">
+      <li class="reveal" style="--d:0.00s"><img src="media/branche-pflege.webp" alt="Pflegekraft im Gespräch mit einer Bewohnerin" width="1024" height="572" loading="lazy" decoding="async"><span class="ki" title="Mit KI erstellt">KI</span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 9v6M9 12h6"/></svg>Pflege</span></li>
+      <li class="reveal" style="--d:0.08s"><img src="media/branche-elektro.webp" alt="Elektrofachkraft arbeitet an einer Verteilung" width="1024" height="572" loading="lazy" decoding="async"><span class="ki" title="Mit KI erstellt">KI</span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Elektro</span></li>
+      <li class="reveal" style="--d:0.16s"><img src="media/branche-bau.webp" alt="Bauarbeiter auf einer Baustelle" width="1024" height="572" loading="lazy" decoding="async"><span class="ki" title="Mit KI erstellt">KI</span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12 12 3l10 9"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Bau &amp; Dach</span></li>
+      <li class="reveal" style="--d:0.24s"><img src="media/branche-gastro.webp" alt="Blick über den Pass einer Hotelküche am Abend" width="1024" height="572" loading="lazy" decoding="async"><span class="ki" title="Mit KI erstellt">KI</span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Hotel &amp; Gastro</span></li>
+    </ul>
+    <ul class="chips reveal">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Handwerk &amp; SHK</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Lager &amp; Logistik</li>
+      <li class="more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>und mehr</li>
     </ul>
   </div>
 </section>
@@ -211,8 +251,8 @@ footer a{color:var(--on-dark);text-decoration:none}footer a:hover{color:#fff;tex
 <section class="dauer" aria-labelledby="h-dauer">
   <div class="wrap reveal">
     <p class="eyebrow">Dauer</p>
-    <h2 id="h-dauer" class="big"><small class="pre">Rund</small>4 Monate<small>ab Auftrag.</small></h2>
-    <p>So lange dauert es meist, bis Ihre neue Kraft bei Ihnen anfängt. Pflege und Westbalkan dauern oft länger. Das sagen wir Ihnen vorher.</p>
+    <h2 id="h-dauer" class="big"><small class="pre">Rund</small>8–12 Wochen<small>ab Auftrag.</small></h2>
+    <p>So lange dauert alles: vom Auftrag bis zum ersten Arbeitstag.</p>
   </div>
 </section>
 
@@ -222,13 +262,17 @@ footer a{color:var(--on-dark);text-decoration:none}footer a:hover{color:#fff;tex
       <p class="eyebrow">Für Großhandel und Einkaufsverbünde</p>
       <h2 id="h-partner">Bieten Sie Ihren Kunden Personal an.</h2>
       <p>Ihren Kunden fehlen Leute. Das bremst auch Ihr Geschäft. Mit uns haben Sie eine Antwort.</p>
+      <ul class="steps-p">
+        <li><b>1</b><span>Sie stellen uns Ihren Kunden vor.</span></li>
+        <li><b>2</b><span>Wir beraten die Betriebe und machen die Vermittlung.</span></li>
+        <li><b>3</b><span>Ihre Kunden haben neue Leute. Sie haben zufriedene Kunden.</span></li>
+      </ul>
       <a class="btn w" href="mailto:anfrage@miotalent.de?subject=Partner%20werden">Partner werden</a>
     </div>
-    <ul class="reveal" style="--d:.15s">
-      <li><b>1</b><span>Sie stellen uns Ihren Kunden vor.</span></li>
-      <li><b>2</b><span>Wir beraten die Betriebe und machen die Vermittlung.</span></li>
-      <li><b>3</b><span>Ihre Kunden haben neue Leute. Sie haben zufriedene Kunden.</span></li>
-    </ul>
+    <figure class="reveal" style="--d:.15s">
+      <img src="media/team-gespraech.webp" alt="Konstantin Sécrit, Philipp Rowe und Simon Gläve im Gespräch am Tisch" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>Ihr Team bei MioTalent: Konstantin Sécrit, Philipp Rowe, Simon Gläve.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -238,6 +282,7 @@ footer a{color:var(--on-dark);text-decoration:none}footer a:hover{color:#fff;tex
     <p>Sagen Sie es uns. Wir finden die Person.</p>
     <a class="btn" href="mailto:anfrage@miotalent.de?subject=Fachkr%C3%A4fte%20anfragen">Fachkräfte anfragen</a>
     <p class="alt">Lieber reden? <a href="tel:+493075435914">030 754 359 14</a></p>
+    <div class="who"><img src="media/philipp-rowe.webp" alt="Philipp Rowe" width="56" height="56" loading="lazy"><img src="media/konstantin-secrit.webp" alt="Konstantin Sécrit" width="56" height="56" loading="lazy"><p>Ihr Rückruf kommt von <b>Philipp Rowe</b> oder <b>Konstantin Sécrit</b>.</p></div>
   </div>
 </section>
 </main>
